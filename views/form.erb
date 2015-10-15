@@ -1,0 +1,71 @@
+<h1>State List</h1>
+
+
+
+<!-- iterate through each state in the array and put them into list items individually -->
+
+<% if @params["submit"] == "Submit" %>
+<p>The Form has been Submitted
+</p>
+
+<% end %>
+
+<form name="myform" method="get">
+  <p>
+  <label>Full Name<br/>
+    <input name="Name" type="text" value="<%= @params[:Name] %>">
+  </label>
+  </p>
+
+  <p>
+  <label>Address<br/>
+    <textarea name="Address" id="<%= @params[:Address] %>"><%= @params[:Address] %></textarea>
+  </label>
+  </p>
+  
+  <p>
+    <label>City<br/>
+    <input name="City" type="text" value="<%= @params[:City] %>">
+  </label>
+  </p>
+  
+  <p>
+  <label>State<br/>
+ <select name="state">
+   <% @states.each do | state | %>
+<% if @params["state"] ==  state[:name] %>
+	    <option value= "<%=state[:name]%>" selected="selected"><%= state[:name] %></option>
+<% else %>
+	    <option value= "<%=state[:name]%>"><%= state[:name] %></option>
+  <% end %>
+    <% end %>
+  </select>
+  </label>
+  </p>
+  
+    <p>
+    <label>Zip Code<br/>
+    <input name="Zip" type="text" value="<%= @params[:Zip] %>">
+  </label>
+  </p>
+  
+
+<% if @params["I_agree"] == "on"   %>
+  <p>
+  <label>
+    <input name="I_agree" type="checkbox" checked> I verify this info is true
+  </label>
+  </p>
+<% else %>
+  <p>
+  <label>
+    <input name="I_agree" type="checkbox"> I verify this info is true
+  </label>
+  </p>
+<% end %>
+  <p>
+  <input type="submit" name="submit" value="Submit">
+  </p>
+</form>
+
+
